@@ -1,0 +1,84 @@
+/* Estilos generales */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .contenedor {
+    display: flex;
+    align-items: center;
+  }
+  
+  .fichas {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 20px;
+  }
+  
+  .columna {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 10px;
+  }
+  
+  /* Fichas con imagen */
+  .ficha {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .ficha.roja {
+    background-image: url('imagenes/car-aguila.png'); /* Ejemplo para Carnívoros */
+  }
+  
+  .ficha.azul {
+    background-image: url('imagenes/her-conejo.png'); /* Ejemplo para Herbívoros */
+  }
+  
+  /* Tablero */
+  .tablero {
+    display: grid;
+    grid-template-columns: repeat(10, 60px); /* 10 columnas */
+    grid-template-rows: repeat(10, 60px);    /* 10 filas */
+    gap: 2px;
+    background-color: #333;
+    border: 2px solid #444;
+  }
+  
+  /* Casillas del tablero */
+  .casilla {
+    width: 60px;
+    height: 60px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .casilla:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .casilla.clicada {
+    background-color: #ffeb3b; /* Color al hacer clic */
+  }
+  
