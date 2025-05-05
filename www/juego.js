@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let fichaSeleccionada = null;
     let fichaOrigen = null;
     let jugadorActivo = 1;
+    const tarjeta1 = document.getElementById('tarjeta-izquierda');
+    const tarjeta2 = document.getElementById('tarjeta-derecha');
     // Objeto con estadísticas y habilidades de los animales
 const animales = {
   Conejo: {
@@ -177,15 +179,34 @@ const animales = {
 };
 
     function mostrarTarjeta(infoHTML, lado) {
-      const tarjeta = document.getElementById('tarjeta-info');
-      tarjeta.innerHTML = infoHTML;
-      tarjeta.classList.remove('tarjeta-oculta', 'tarjeta-izquierda', 'tarjeta-derecha');
-      tarjeta.classList.add(lado === 'izquierda' ? 'tarjeta-izquierda' : 'tarjeta-derecha');
+      
+      if (lado === 'izquierda') {
+        tarjeta1.innerHTML = infoHTML;
+        tarjeta1.classList.remove('tarjeta-oculta');
+      }
+      if (lado === 'derecha') {
+        tarjeta2.innerHTML = infoHTML;
+        tarjeta2.classList.remove('tarjeta-oculta');
+      }
+
 }
 
 
-    function ocultarTarjeta() {
-      document.getElementById('tarjeta-info').classList.add('tarjeta-oculta');
+    function ocultarTarjeta(ficha) {
+      
+      if (ficha == null) {
+        tarjeta1.classList.add('tarjeta-oculta');
+        tarjeta2.classList.add('tarjeta-oculta');
+        return;
+      }
+      //si es de jugador 1 oculta la tarjeta izquierda
+      if (ficha === '1') {
+        tarjeta1.classList.add('tarjeta-oculta');
+      }
+      //si es de jugador 2 oculta la tarjeta derecha
+      if (ficha === '2') {
+        tarjeta2.classList.add('tarjeta-oculta');
+      }
     }
 
     // === NUEVO: Funciones para obtener animal y generar HTML de tarjeta ===
@@ -425,7 +446,12 @@ casillas.forEach(casilla => {
         }
       });
       
-      nuevaFicha.addEventListener('mouseleave', ocultarTarjeta);
+      nuevaFicha.addEventListener('mouseleave', () => {
+        if (nuevaFicha.style.border === '2px solid yellow') {
+          return; // No ocultar la tarjeta si la ficha está seleccionada
+        }
+        ocultarTarjeta(nuevaFicha.dataset.jugador);
+      });
       
   
       casilla.appendChild(nuevaFicha);
@@ -459,11 +485,14 @@ casillas.forEach(casilla => {
 
     // Ocultar la tarjeta al hacer clic fuera de una ficha o la propia tarjeta
     document.addEventListener('click', (event) => {
-      const tarjeta = document.getElementById('tarjeta-info');
-      const esFicha = event.target.classList.contains('ficha');
-      const esTarjeta = tarjeta.contains(event.target);
+      const tarjeta1 = document.getElementById('tarjeta-izquierda');
+      const tarjeta2 = document.getElementById('tarjeta-derecha');
 
-      if (!esFicha && !esTarjeta) {
+      const esFicha = event.target.classList.contains('ficha');
+      const esTarjeta1 = tarjeta1.contains(event.target);
+      const esTarjeta2 = tarjeta2.contains(event.target);
+
+      if (!esFicha && !esTarjeta1 && !esTarjeta2) {
         ocultarTarjeta();
         fichas.forEach(f => f.style.border = 'none');
       }
@@ -480,7 +509,13 @@ casillas.forEach(casilla => {
         }
       });
 
-      ficha.addEventListener('mouseleave', ocultarTarjeta);
+      ficha.addEventListener('mouseleave', () => {
+        if (ficha.style.border === '2px solid yellow') {
+          return; // No ocultar la tarjeta si la ficha está seleccionada
+        }
+        ocultarTarjeta(ficha.dataset.jugador);
+      });
+
 
       ficha.addEventListener('click', () => {
         const idFicha = ficha.id;
