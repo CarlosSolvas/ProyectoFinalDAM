@@ -11,168 +11,168 @@ const animales = {
   Conejo: {
     id: 'ficha13',
     vida: ['①'],
-    escudo: ['①'],
+    defensa: ['①'],
     ataque: ['①'],
     habilidad: 'Puede saltar 3 casillas en un movimiento, incluso si hay rivales delante.'
   },
   Hipopotamo: {
     id: 'ficha18',
     vida: ['①', '②', '③', '④', '⑤'],
-    escudo: ['①', '②', '③', '④'],
+    defensa: ['①', '②', '③', '④'],
     ataque: ['①', '②', '③', '④'],
     habilidad: 'Empuje: puede mover de su casilla a un carnívoro adyacente (lo desplaza 1 casilla atrás).'
   },
   Gacela: {
     id: 'ficha19',
     vida: ['①', '②'],
-    escudo: ['①', '②'],
+    defensa: ['①', '②'],
     ataque: ['①'],
     habilidad: 'Doble movimiento: puede moverse dos veces por turno una vez por partida.'
   },
   Elefante: {
     id: 'ficha23',
     vida: ['①', '②', '③', '④', '⑤'],
-    escudo: ['①', '②', '③', '④'],
+    defensa: ['①', '②', '③', '④'],
     ataque: ['①', '②', '③', '④'],
     habilidad: 'Golpe aplastante: puede atacar 2 enemigos en casillas adyacentes a la vez.'
   },
   Gorila: {
     id: 'ficha20',
     vida: ['①', '②', '③', '④'],
-    escudo: ['①', '②', '③'],
+    defensa: ['①', '②', '③'],
     ataque: ['①', '②', '③', '④'],
     habilidad: 'Golpe doble: puede atacar dos veces en un mismo turno a un solo enemigo.'
   },
   Chimpance: {
     id: 'ficha24',
     vida: ['①', '②', '③'],
-    escudo: ['①', '②'],
+    defensa: ['①', '②'],
     ataque: ['①', '②', '③'],
     habilidad: 'Trepar: puede esquivar automáticamente un ataque una vez por partida.'
   },
   Colibri: {
     id: 'ficha21',
     vida: ['①'],
-    escudo: ['①'],
+    defensa: ['①'],
     ataque: ['①'],
     habilidad: 'Vuelo ágil: puede moverse hasta 3 casillas en línea recta ignorando enemigos si no ataca ese turno.'
   },
   Rinoceronte: {
     id: 'ficha22',
     vida: ['①', '②', '③', '④', '⑤'],
-    escudo: ['①', '②', '③', '④'],
+    defensa: ['①', '②', '③', '④'],
     ataque: ['①', '②', '③', '④', '⑤'],
     habilidad: 'Carga: si corre 2 casillas en línea recta, gana un ataque extra ese turno.'
   },
   Tortuga: {
     id: 'ficha16',
     vida: ['①', '②', '③', '④'],
-    escudo: ['①', '②', '③', '④'],
+    defensa: ['①', '②', '③', '④'],
     ataque: ['①'],
     habilidad: 'Caparazón: reduce el daño de los ataques a la mitad.'
   },
   Camaleon: {
     id: 'ficha14',
     vida: ['①', '②'],
-    escudo: ['①', '②'],
+    defensa: ['①', '②'],
     ataque: ['①', '②'],
     habilidad: 'Camuflaje: puede volverse invisible un turno (no puede ser atacado).'
   },
   Canguro: {
     id: 'ficha15',
     vida: ['①', '②', '③'],
-    escudo: ['①', '②', '③'],
+    defensa: ['①', '②', '③'],
     ataque: ['①', '②', '③'],
     habilidad: 'Salto largo: puede saltar 2 casillas en diagonal esquivando enemigos.'
   },
   Avestruz: {
     id: 'ficha17',
     vida: ['①', '②', '③'],
-    escudo: ['①', '②'],
+    defensa: ['①', '②'],
     ataque: ['①', '②'],
     habilidad: 'Carrera: una vez por partida puede moverse el doble de casillas en línea recta.'
   },
   Leon: {
     id: 'ficha2',
     vida: ['①', '②', '③', '④'],
-    escudo: ['①', '②', '③'],
+    defensa: ['①', '②', '③'],
     ataque: ['①', '②', '③', '④', '⑤'],
     habilidad: 'Rugido: puede atemorizar un herbívoro adyacente, haciéndole perder un turno.'
   },
   Tigre: {
     id: 'ficha3',
     vida: ['①', '②', '③', '④'],
-    escudo: ['①', '②', '③'],
+    defensa: ['①', '②', '③'],
     ataque: ['①', '②', '③', '④', '⑤'],
     habilidad: 'Emboscada: si no se ha movido el turno anterior, su siguiente ataque no puede ser esquivado.'
   },
   Serpiente: {
     id: 'ficha4',
     vida: ['①', '②'],
-    escudo: ['①', '②'],
+    defensa: ['①', '②'],
     ataque: ['①', '②', '③', '④'],
     habilidad: 'Mordedura venenosa: envenena al rival, haciéndole perder 1 vida extra por turno durante 2 turnos.'
   },
   Cocodrilo: {
     id: 'ficha5',
     vida: ['①', '②', '③', '④', '⑤'],
-    escudo: ['①', '②', '③', '④'],
+    defensa: ['①', '②', '③', '④'],
     ataque: ['①', '②', '③', '④'],
     habilidad: 'Emboscada acuática: si está en una casilla especial de agua, ataca el doble de fuerte.'
   },
   Leopardo: {
     id: 'ficha7',
     vida: ['①', '②', '③'],
-    escudo: ['①', '②'],
+    defensa: ['①', '②'],
     ataque: ['①', '②', '③', '④'],
     habilidad: 'Sigilo: si no ataca, puede moverse a una casilla detrás del enemigo adyacente.'
   },
   Aguila: {
     id: 'ficha1',
     vida: ['①', '②'],
-    escudo: ['①', '②'],
+    defensa: ['①', '②'],
     ataque: ['①', '②', '③'],
     habilidad: 'Ataque aéreo: puede atacar una ficha que esté a distancia de 2 casillas en línea recta o diagonal.'
   },
   Hiena: {
     id: 'ficha6',
     vida: ['①', '②', '③'],
-    escudo: ['①', '②'],
+    defensa: ['①', '②'],
     ataque: ['①', '②', '③'],
     habilidad: 'Risa desestabilizadora: ① ② las probabilidades de esquivar de un rival cercano durante 2 turnos.'
   },
   Lobo: {
     id: 'ficha12',
     vida: ['①', '②', '③'],
-    escudo: ['①', '②', '③'],
+    defensa: ['①', '②', '③'],
     ataque: ['①', '②', '③'],
     habilidad: 'Ataque en manada: si hay otro carnívoro adyacente, gana un ataque extra.'
   },
   Zorro: {
     id: 'ficha8',
     vida: ['①', '②'],
-    escudo: ['①', '②'],
+    defensa: ['①', '②'],
     ataque: ['①', '②'],
     habilidad: 'Engaño: puede cambiar de casilla con un aliado una vez por partida.'
   },
   Oso: {
     id: 'ficha9',
     vida: ['①', '②', '③', '④', '⑤'],
-    escudo: ['①', '②', '③', '④'],
+    defensa: ['①', '②', '③', '④'],
     ataque: ['①', '②', '③', '④', '⑤'],
     habilidad: 'Zarpazo brutal: ataca a todos los enemigos adyacentes en un solo movimiento.'
   },
   PerroSalvaje: {
     id: 'ficha10',
     vida: ['①', '②', '③'],
-    escudo: ['①', '②'],
+    defensa: ['①', '②'],
     ataque: ['①', '②', '③'],
     habilidad: 'Emboscada en grupo: si ataca junto a otro carnívoro, el daño es aumentado.'
   },
   Pantera: {
     id: 'ficha11',
     vida: ['①', '②', '③'],
-    escudo: ['①', '②'],
+    defensa: ['①', '②'],
     ataque: ['①', '②', '③', '④'],
     habilidad: 'Ataque silencioso: si no ha atacado el turno anterior, su primer ataque no puede ser esquivado.'
   }
@@ -209,7 +209,7 @@ const animales = {
       }
     }
 
-    // === NUEVO: Funciones para obtener animal y generar HTML de tarjeta ===
+    // === Funciones para obtener animal y generar HTML de tarjeta ===
     function obtenerAnimalPorId(idFicha) {
       return Object.values(animales).find(animal => animal.id === idFicha);
     }
@@ -230,13 +230,13 @@ const animales = {
       }
     
       const vida = simbolos.slice(0, animal.vida.length + bonus).join(' ');
-      const escudo = simbolos.slice(0, animal.escudo.length + bonus).join(' ');
+      const defensa = simbolos.slice(0, animal.defensa.length + bonus).join(' ');
       const ataque = simbolos.slice(0, animal.ataque.length + bonus).join(' ');
     
       return `
         <h3>${Object.keys(animales).find(nombre => animales[nombre] === animal)}</h3>
         <p><strong>Vida:</strong> ${vida}</p>
-        <p><strong>Escudo:</strong> ${escudo}</p>
+        <p><strong>Escudo:</strong> ${defensa}</p>
         <p><strong>Ataque:</strong> ${ataque}</p>
         <p><strong>Habilidad:</strong> ${animal.habilidad}</p>
       `;
@@ -267,23 +267,27 @@ const animales = {
     
     function eliminarFicha(ficha) {
       const jugador = ficha.dataset.jugador;
-    
+      const padre = ficha.parentElement;
+
       const zona = jugador === '1'
         ? document.getElementById('eliminados-j1')
         : document.getElementById('eliminados-j2');
     
       // Clonar la ficha original sin eventos ni estilos activos
       const fichaClon = ficha.cloneNode(true);
-      fichaClon.removeAttribute('style');
+      //fichaClon.removeAttribute('style');
       fichaClon.style.border = 'none';
       fichaClon.style.cursor = 'default';
+      fichaClon.style.visibility = 'visible';
     
       zona.appendChild(fichaClon);
     
       // Eliminar del tablero
-      const padre = ficha.parentElement;
+      
       if (padre && padre.contains(ficha)) {
         padre.removeChild(ficha);
+        
+        console.log(ficha);
       }
     }        
     
@@ -312,7 +316,7 @@ const animales = {
         ataque += 1;
       }
     
-      const defensa = objetivo.escudo.length;
+      const defensa = objetivo.defensa.length;
       const daño = Math.max(ataque - defensa, 0);    
     
       // Animación de ataque visual
@@ -457,6 +461,7 @@ casillas.forEach(casilla => {
   
     // Mover ficha y añadir lógica para seleccionar desde el tablero
     function moverFicha(casilla) {
+      console.log('Mover ficha');
       const nuevaFicha = fichaSeleccionada.cloneNode(true);
       nuevaFicha.id = fichaSeleccionada.id;
       nuevaFicha.dataset.jugador = fichaSeleccionada.dataset.jugador;
@@ -485,13 +490,18 @@ casillas.forEach(casilla => {
       });
       
       nuevaFicha.addEventListener('mouseleave', () => {
+        // No ocultar la tarjeta si la ficha está seleccionada
         if (nuevaFicha.style.border === '2px solid yellow') {
-          return; // No ocultar la tarjeta si la ficha está seleccionada
+          return; 
         }
         ocultarTarjeta(nuevaFicha.dataset.jugador);
       });
       
-  
+      //Eliminar ficha de la casilla anterior
+      if (fichaOrigen && fichaOrigen.hasChildNodes()) {
+        fichaOrigen.removeChild(fichaSeleccionada);
+      }
+      // Añadir la nueva ficha a la casilla destino
       casilla.appendChild(nuevaFicha);
   
       fichaSeleccionada.style.visibility = 'hidden';
