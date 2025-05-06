@@ -215,11 +215,23 @@ const animales = {
     }
 
     function generarHTMLTarjeta(animal) {
-      const simbolos = ['①', '②', '③', '④', '⑤'];
+      const simbolos = ['①', '②', '③', '④', '⑤', '⑥'];
+      const ficha = document.getElementById(animal.id);
+      let bonus = 0;
     
-      const vida = simbolos.slice(0, animal.vida.length).join(' ');
-      const escudo = simbolos.slice(0, animal.escudo.length).join(' ');
-      const ataque = simbolos.slice(0, animal.ataque.length).join(' ');
+      if (ficha && ficha.parentElement.classList.contains('agua')) {
+        if (
+          animal.id === 'ficha5' ||   // Cocodrilo
+          animal.id === 'ficha18' ||  // Hipopotamo
+          animal.id === 'ficha16'     // Tortuga
+        ) {
+          bonus = 1;
+        }
+      }
+    
+      const vida = simbolos.slice(0, animal.vida.length + bonus).join(' ');
+      const escudo = simbolos.slice(0, animal.escudo.length + bonus).join(' ');
+      const ataque = simbolos.slice(0, animal.ataque.length + bonus).join(' ');
     
       return `
         <h3>${Object.keys(animales).find(nombre => animales[nombre] === animal)}</h3>
@@ -228,8 +240,7 @@ const animales = {
         <p><strong>Ataque:</strong> ${ataque}</p>
         <p><strong>Habilidad:</strong> ${animal.habilidad}</p>
       `;
-    }
-    
+    }    
 
     function reducirVida(idFicha, cantidad) {
       const animal = obtenerAnimalPorId(idFicha);
@@ -237,48 +248,72 @@ const animales = {
     
       animal.vida.splice(0, cantidad);
     
+      // Buscar la ficha activa (en el tablero, no clonada)
+      const ficha = [...document.querySelectorAll(`.ficha[id="${idFicha}"]`)].find(f => {
+        return f.parentElement && f.parentElement.classList.contains('casilla');
+      });
+    
       // Eliminar ficha si muere
-      if (animal.vida.length <= 0) {
-        const ficha = document.querySelector(`.ficha[id="${idFicha}"]`);
-        if (ficha) eliminarFicha(ficha);
+      if (animal.vida.length <= 0 && ficha) {
+        eliminarFicha(ficha);
       }
     
+      // Si está seleccionada, actualizar tarjeta
       if (fichaSeleccionada && fichaSeleccionada.id === idFicha) {
         const html = generarHTMLTarjeta(animal);
         mostrarTarjeta(html, fichaSeleccionada.dataset.jugador === '1' ? 'izquierda' : 'derecha');
       }
-    }
+    }        
     
     function eliminarFicha(ficha) {
       const jugador = ficha.dataset.jugador;
+    
       const zona = jugador === '1'
         ? document.getElementById('eliminados-j1')
         : document.getElementById('eliminados-j2');
     
+      // Clonar la ficha original sin eventos ni estilos activos
       const fichaClon = ficha.cloneNode(true);
+      fichaClon.removeAttribute('style');
       fichaClon.style.border = 'none';
       fichaClon.style.cursor = 'default';
-      fichaClon.removeEventListener('click', () => {});
-      fichaClon.removeEventListener('mouseenter', () => {});
-      fichaClon.removeEventListener('mouseleave', () => {});
     
       zona.appendChild(fichaClon);
     
-      // Eliminar del tablero visualmente
+      // Eliminar del tablero
       const padre = ficha.parentElement;
-      if (padre && padre.classList.contains('casilla')) {
+      if (padre && padre.contains(ficha)) {
         padre.removeChild(ficha);
       }
-    }
+    }        
     
     function atacarFicha(atacanteFicha, objetivoFicha) {
       const atacante = obtenerAnimalPorId(atacanteFicha.id);
       const objetivo = obtenerAnimalPorId(objetivoFicha.id);
       if (!atacante || !objetivo) return;
+
+      // Si el objetivo está en una casilla con hierba, no puede ser atacado
+      const casillaObjetivo = objetivoFicha.parentElement;
+      if (casillaObjetivo && casillaObjetivo.classList.contains('hierba')) {
+      console.log('El objetivo está escondido en la hierba y no puede ser atacado.');
+      return;
+}
+
+      // BONUS de agua si corresponde
+      let ataque = atacante.ataque.length;
+      const atacanteCasilla = atacanteFicha.parentElement;
     
-      const ataque = atacante.ataque.length;
+      const esAnimalDeAgua =
+        atacante.id === 'ficha5' || // Cocodrilo
+        atacante.id === 'ficha18' || // Hipopotamo
+        atacante.id === 'ficha16';   // Tortuga
+    
+      if (esAnimalDeAgua && atacanteCasilla.classList.contains('agua')) {
+        ataque += 1;
+      }
+    
       const defensa = objetivo.escudo.length;
-      const daño = Math.max(ataque - defensa, 0);
+      const daño = Math.max(ataque - defensa, 0);    
     
       // Animación de ataque visual
       const atacanteClone = atacanteFicha.cloneNode(true);
@@ -372,6 +407,9 @@ const casillas = document.querySelectorAll('.casilla');
 casillas.forEach(casilla => {
   casilla.addEventListener('click', () => {
     if (!fichaSeleccionada) return;
+
+    // Si la casilla es roca, no se puede hacer nada
+    if (casilla.classList.contains('roca')) return;
 
     const destinoFila = parseInt(casilla.dataset.fila);
     const destinoCol = parseInt(casilla.dataset.columna);
