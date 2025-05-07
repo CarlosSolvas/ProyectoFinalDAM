@@ -25,7 +25,7 @@ const animales = {
     ataque: ['①'],
     habilidad: 'Puede saltar 3 casillas en un movimiento, incluso si hay rivales delante.'
   },
-  Hipopotamo: {
+  Hipopótamo: {
     id: 'ficha18',
     vida: ['①', '②', '③', '④', '⑤'],
     defensa: ['①', '②', '③', '④'],
@@ -53,14 +53,14 @@ const animales = {
     ataque: ['①', '②', '③', '④'],
     habilidad: 'Golpe doble: puede atacar dos veces en un mismo turno a un solo enemigo.'
   },
-  Chimpance: {
+  Chimpancé: {
     id: 'ficha24',
     vida: ['①', '②', '③'],
     defensa: ['①', '②'],
     ataque: ['①', '②', '③'],
     habilidad: 'Trepar: puede esquivar automáticamente un ataque una vez por partida.'
   },
-  Colibri: {
+  Colibrí: {
     id: 'ficha21',
     vida: ['①'],
     defensa: ['①'],
@@ -81,7 +81,7 @@ const animales = {
     ataque: ['①'],
     habilidad: 'Caparazón: reduce el daño de los ataques a la mitad.'
   },
-  Camaleon: {
+  Camaleón: {
     id: 'ficha14',
     vida: ['①', '②'],
     defensa: ['①', '②'],
@@ -102,7 +102,7 @@ const animales = {
     ataque: ['①', '②'],
     habilidad: 'Carrera: una vez por partida puede moverse el doble de casillas en línea recta.'
   },
-  Leon: {
+  León: {
     id: 'ficha2',
     vida: ['①', '②', '③', '④'],
     defensa: ['①', '②', '③'],
@@ -137,7 +137,7 @@ const animales = {
     ataque: ['①', '②', '③', '④'],
     habilidad: 'Sigilo: si no ataca, puede moverse a una casilla detrás del enemigo adyacente.'
   },
-  Aguila: {
+  Águila: {
     id: 'ficha1',
     vida: ['①', '②'],
     defensa: ['①', '②'],
@@ -247,7 +247,7 @@ const animales = {
       return `
         <h3>${Object.keys(animales).find(nombre => animales[nombre] === animal)}</h3>
         <p><strong>Vida:</strong> ${vida}</p>
-        <p><strong>Escudo:</strong> ${defensa}</p>
+        <p><strong>Defensa:</strong> ${defensa}</p>
         <p><strong>Ataque:</strong> ${ataque}</p>
         <p><strong>Habilidad:</strong> ${animal.habilidad}</p>
       `;
