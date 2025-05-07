@@ -1,78 +1,98 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Animal Wars</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Instinto Animal</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <!-- Contenedores para animales eliminados -->
-  <div class="eliminados izquierda">
-    <h3>Animales eliminados (Jugador 1)</h3>
-    <div id="eliminados-j1" class="zona-eliminados"></div>
-  </div>
-  <div class="eliminados derecha">
-    <h3>Animales eliminados (Jugador 2)</h3>
-    <div id="eliminados-j2" class="zona-eliminados"></div>
+
+  <!-- Pantalla de inicio -->
+  <div id="pantalla-inicio">
+    <div class="fondo-inicio"></div>
+    <button id="boton-start">START</button>
   </div>
 
-  <div class="contenedor">
-    <!-- Fichas rojas a la izquierda -->
-    <div class="fichas">
-      <div class="columna" id="fichas-rojas">
-        <div class="ficha roja" id="ficha1" data-jugador="1" style="background-image: url('imagenes/car-aguila.png');"></div>
-        <div class="ficha roja" id="ficha2" data-jugador="1" style="background-image: url('imagenes/car-leon.png');"></div>
-        <div class="ficha roja" id="ficha3" data-jugador="1" style="background-image: url('imagenes/car-tigre.png');"></div>
-        <div class="ficha roja" id="ficha4" data-jugador="1" style="background-image: url('imagenes/car-serpiente.png');"></div>
-        <div class="ficha roja" id="ficha5" data-jugador="1" style="background-image: url('imagenes/car-cocodrilo.png');"></div>
-        <div class="ficha roja" id="ficha6" data-jugador="1" style="background-image: url('imagenes/car-hiena.png');"></div>
-        <div class="ficha roja" id="ficha7" data-jugador="1" style="background-image: url('imagenes/car-leopardo.png');"></div>
-        <div class="ficha roja" id="ficha8" data-jugador="1" style="background-image: url('imagenes/car-zorro.png');"></div>
-        <div class="ficha roja" id="ficha9" data-jugador="1" style="background-image: url('imagenes/car-oso.png');"></div>
-        <div class="ficha roja" id="ficha10" data-jugador="1" style="background-image: url('imagenes/car-perro.png');"></div>
-        <div class="ficha roja" id="ficha11" data-jugador="1" style="background-image: url('imagenes/car-pantera.png');"></div>
-        <div class="ficha roja" id="ficha12" data-jugador="1" style="background-image: url('imagenes/car-lobo.png');"></div>
+  <!-- Contenido del juego oculto al principio -->
+  <div class="zona-juego" id="zona-juego" style="display: none;">
+    <!-- IZQUIERDA: Marcador y Eliminados Jugador 1 -->
+    <div class="lateral-info">
+      <div class="marcador" id="marcador-j1">
+        <h3>Jugador 1</h3>
+        <div id="puntos-j1">0 / 6 🏆</div>
       </div>
+      <div class="eliminados">
+        <h3>Eliminados (J1)</h3>
+        <div id="eliminados-j1" class="zona-eliminados"></div>
+      </div>
+    </div>
+
+    <!-- Fichas rojas -->
+    <div class="columna fichas" id="fichas-rojas">
+      <!-- ... Fichas rojas ... -->
+      <div class="ficha roja" id="ficha1" data-jugador="1" style="background-image: url('imagenes/car-aguila.png');"></div>
+      <div class="ficha roja" id="ficha2" data-jugador="1" style="background-image: url('imagenes/car-leon.png');"></div>
+      <div class="ficha roja" id="ficha3" data-jugador="1" style="background-image: url('imagenes/car-tigre.png');"></div>
+      <div class="ficha roja" id="ficha4" data-jugador="1" style="background-image: url('imagenes/car-serpiente.png');"></div>
+      <div class="ficha roja" id="ficha5" data-jugador="1" style="background-image: url('imagenes/car-cocodrilo.png');"></div>
+      <div class="ficha roja" id="ficha6" data-jugador="1" style="background-image: url('imagenes/car-hiena.png');"></div>
+      <div class="ficha roja" id="ficha7" data-jugador="1" style="background-image: url('imagenes/car-leopardo.png');"></div>
+      <div class="ficha roja" id="ficha8" data-jugador="1" style="background-image: url('imagenes/car-zorro.png');"></div>
+      <div class="ficha roja" id="ficha9" data-jugador="1" style="background-image: url('imagenes/car-oso.png');"></div>
+      <div class="ficha roja" id="ficha10" data-jugador="1" style="background-image: url('imagenes/car-perro.png');"></div>
+      <div class="ficha roja" id="ficha11" data-jugador="1" style="background-image: url('imagenes/car-pantera.png');"></div>
+      <div class="ficha roja" id="ficha12" data-jugador="1" style="background-image: url('imagenes/car-lobo.png');"></div>
     </div>
 
     <!-- Tablero -->
     <div class="tablero" id="tablero"></div>
 
-    <!-- Tarjeta Estadísticas -->
-    <div id="tarjeta-izquierda" class="tarjeta-oculta tarjeta-info">
-      <h3>Nombre del Animal</h3>
-      <p>Vida</p>
-      <p>Defensa</p>
-      <p>Ataque</p>
-      <p>Habilidad</p>
+    <!-- Fichas verdes -->
+    <div class="columna fichas" id="fichas-verdes">
+      <!-- ... Fichas verdes ... -->
+      <div class="ficha verde" id="ficha13" data-jugador="2" style="background-image: url('imagenes/her-conejo.png');"></div>
+      <div class="ficha verde" id="ficha14" data-jugador="2" style="background-image: url('imagenes/her-camaleon.png');"></div>
+      <div class="ficha verde" id="ficha15" data-jugador="2" style="background-image: url('imagenes/her-canguro.png');"></div>
+      <div class="ficha verde" id="ficha16" data-jugador="2" style="background-image: url('imagenes/her-tortuga.png');"></div>
+      <div class="ficha verde" id="ficha17" data-jugador="2" style="background-image: url('imagenes/her-avestruz.png');"></div>
+      <div class="ficha verde" id="ficha18" data-jugador="2" style="background-image: url('imagenes/her-hipopotamo.png');"></div>
+      <div class="ficha verde" id="ficha19" data-jugador="2" style="background-image: url('imagenes/her-gacela.png');"></div>
+      <div class="ficha verde" id="ficha20" data-jugador="2" style="background-image: url('imagenes/her-gorila.png');"></div>
+      <div class="ficha verde" id="ficha21" data-jugador="2" style="background-image: url('imagenes/her-colibri.png');"></div>
+      <div class="ficha verde" id="ficha22" data-jugador="2" style="background-image: url('imagenes/her-rinoceronte.png');"></div>
+      <div class="ficha verde" id="ficha23" data-jugador="2" style="background-image: url('imagenes/her-elefante.png');"></div>
+      <div class="ficha verde" id="ficha24" data-jugador="2" style="background-image: url('imagenes/her-chimpance.png');"></div>
     </div>
 
-    <div id="tarjeta-derecha" class="tarjeta-oculta tarjeta-info">
-      <h3>Nombre del Animal</h3>
-      <p>Vida</p>
-      <p>Defensa</p>
-      <p>Ataque</p>
-      <p>Habilidad</p>
-    </div>
-
-    <!-- Fichas verdes a la derecha -->
-    <div class="fichas">
-      <div class="columna" id="fichas-verdes">
-        <div class="ficha verde" id="ficha13" data-jugador="2" style="background-image: url('imagenes/her-conejo.png');"></div>
-        <div class="ficha verde" id="ficha14" data-jugador="2" style="background-image: url('imagenes/her-camaleon.png');"></div>
-        <div class="ficha verde" id="ficha15" data-jugador="2" style="background-image: url('imagenes/her-canguro.png');"></div>
-        <div class="ficha verde" id="ficha16" data-jugador="2" style="background-image: url('imagenes/her-tortuga.png');"></div>
-        <div class="ficha verde" id="ficha17" data-jugador="2" style="background-image: url('imagenes/her-avestruz.png');"></div>
-        <div class="ficha verde" id="ficha18" data-jugador="2" style="background-image: url('imagenes/her-hipopotamo.png');"></div>
-        <div class="ficha verde" id="ficha19" data-jugador="2" style="background-image: url('imagenes/her-gacela.png');"></div>
-        <div class="ficha verde" id="ficha20" data-jugador="2" style="background-image: url('imagenes/her-gorila.png');"></div>
-        <div class="ficha verde" id="ficha21" data-jugador="2" style="background-image: url('imagenes/her-colibri.png');"></div>
-        <div class="ficha verde" id="ficha22" data-jugador="2" style="background-image: url('imagenes/her-rinoceronte.png');"></div>
-        <div class="ficha verde" id="ficha23" data-jugador="2" style="background-image: url('imagenes/her-elefante.png');"></div>
-        <div class="ficha verde" id="ficha24" data-jugador="2" style="background-image: url('imagenes/her-chimpance.png');"></div>
+    <!-- DERECHA: Marcador y Eliminados Jugador 2 -->
+    <div class="lateral-info">
+      <div class="marcador" id="marcador-j2">
+        <h3>Jugador 2</h3>
+        <div id="puntos-j2">0 / 6 🏆</div>
+      </div>
+      <div class="eliminados">
+        <h3>Eliminados (J2)</h3>
+        <div id="eliminados-j2" class="zona-eliminados"></div>
       </div>
     </div>
+  </div>
+
+  <!-- Tarjetas de información -->
+  <div id="tarjeta-izquierda" class="tarjeta-oculta tarjeta-info">
+    <h3>Nombre del Animal</h3>
+    <p>Vida</p>
+    <p>Escudo</p>
+    <p>Ataque</p>
+    <p>Habilidad</p>
+  </div>
+
+  <div id="tarjeta-derecha" class="tarjeta-oculta tarjeta-info">
+    <h3>Nombre del Animal</h3>
+    <p>Vida</p>
+    <p>Escudo</p>
+    <p>Ataque</p>
+    <p>Habilidad</p>
   </div>
 
   <script src="juego.js"></script>

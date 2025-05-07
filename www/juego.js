@@ -1,11 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const tablero = document.getElementById('tablero');
-    const fichas = document.querySelectorAll('.ficha');
-    let fichaSeleccionada = null;
-    let fichaOrigen = null;
-    let jugadorActivo = 1;
-    const tarjeta1 = document.getElementById('tarjeta-izquierda');
-    const tarjeta2 = document.getElementById('tarjeta-derecha');
+  // Referencias iniciales
+  const tablero = document.getElementById('tablero');
+  const fichas = document.querySelectorAll('.ficha');
+  let fichaSeleccionada = null;
+  let fichaOrigen = null;
+  let jugadorActivo = 1;
+  const tarjeta1 = document.getElementById('tarjeta-izquierda');
+  const tarjeta2 = document.getElementById('tarjeta-derecha');
+
+  // Al pulsar el botón START
+  document.getElementById('boton-start').addEventListener('click', () => {
+    // Ocultar pantalla de inicio
+    document.getElementById('pantalla-inicio').style.display = 'none';
+    // Mostrar la zona del juego
+    document.getElementById('zona-juego').style.display = 'flex';
+  });
+    
     // Objeto con estadísticas y habilidades de los animales
 const animales = {
   Conejo: {
@@ -176,6 +186,7 @@ const animales = {
     ataque: ['①', '②', '③', '④'],
     habilidad: 'Ataque silencioso: si no ha atacado el turno anterior, su primer ataque no puede ser esquivado.'
   }
+  
 };
 
     function mostrarTarjeta(infoHTML, lado) {
@@ -459,92 +470,63 @@ casillas.forEach(casilla => {
   });
 });
   
-    // Mover ficha y añadir lógica para seleccionar desde el tablero
-    function moverFicha(casilla) {
-      console.log('Mover ficha');
-      const nuevaFicha = fichaSeleccionada.cloneNode(true);
-      nuevaFicha.id = fichaSeleccionada.id;
-      nuevaFicha.dataset.jugador = fichaSeleccionada.dataset.jugador;
-      nuevaFicha.style.border = 'none';
-  
-      // Permitir selección posterior desde el tablero
-      nuevaFicha.addEventListener('click', () => {
-        if (parseInt(nuevaFicha.dataset.jugador) !== jugadorActivo) return;
-        fichaSeleccionada = nuevaFicha;
-        fichaOrigen = casilla;
-      
-        fichas.forEach(f => f.style.border = 'none');
-        nuevaFicha.style.border = '2px solid yellow';
-      
-        const animal = obtenerAnimalPorId(nuevaFicha.id);
-        const html = generarHTMLTarjeta(animal);
-        mostrarTarjeta(html, nuevaFicha.dataset.jugador === '1' ? 'izquierda' : 'derecha');
-      });
-      
-      nuevaFicha.addEventListener('mouseenter', () => {
-        const animal = obtenerAnimalPorId(nuevaFicha.id);
-        if (animal) {
-          const html = generarHTMLTarjeta(animal);
-          mostrarTarjeta(html, nuevaFicha.dataset.jugador === '1' ? 'izquierda' : 'derecha');
-        }
-      });
-      
-      nuevaFicha.addEventListener('mouseleave', () => {
-        // No ocultar la tarjeta si la ficha está seleccionada
-        if (nuevaFicha.style.border === '2px solid yellow') {
-          return; 
-        }
-        ocultarTarjeta(nuevaFicha.dataset.jugador);
-      });
-      
-      //Eliminar ficha de la casilla anterior
-      if (fichaOrigen && fichaOrigen.hasChildNodes()) {
-        fichaOrigen.removeChild(fichaSeleccionada);
-      }
-      // Añadir la nueva ficha a la casilla destino
-      casilla.appendChild(nuevaFicha);
-  
-      fichaSeleccionada.style.visibility = 'hidden';
-      fichaSeleccionada = null;
-      fichaOrigen = null;
-  
-      jugadorActivo = jugadorActivo === 1 ? 2 : 1;
-      actualizarFichasDisponibles();
+function moverFicha(casilla) {
+  console.log('Mover ficha');
+  const nuevaFicha = fichaSeleccionada.cloneNode(true);
+  nuevaFicha.id = fichaSeleccionada.id;
+  nuevaFicha.dataset.jugador = fichaSeleccionada.dataset.jugador;
+  nuevaFicha.style.border = 'none';
+
+  // Permitir selección posterior desde el tablero
+  nuevaFicha.addEventListener('click', () => {
+    if (parseInt(nuevaFicha.dataset.jugador) !== jugadorActivo) return;
+    fichaSeleccionada = nuevaFicha;
+    fichaOrigen = casilla;
+
+    fichas.forEach(f => f.style.border = 'none');
+    nuevaFicha.style.border = '2px solid yellow';
+
+    const animal = obtenerAnimalPorId(nuevaFicha.id);
+    const html = generarHTMLTarjeta(animal);
+    mostrarTarjeta(html, nuevaFicha.dataset.jugador === '1' ? 'izquierda' : 'derecha');
+  });
+
+  nuevaFicha.addEventListener('mouseenter', () => {
+    const animal = obtenerAnimalPorId(nuevaFicha.id);
+    if (animal) {
+      const html = generarHTMLTarjeta(animal);
+      mostrarTarjeta(html, nuevaFicha.dataset.jugador === '1' ? 'izquierda' : 'derecha');
     }
-  
-    // Resaltar fichas disponibles para el jugador activo
-    function actualizarFichasDisponibles() {
-      fichas.forEach(f => {
-        f.style.opacity = 0.3;
-        f.style.cursor = 'not-allowed';
-      });
-  
-      const activas = jugadorActivo === 1
-        ? document.querySelectorAll('.ficha.roja')
-        : document.querySelectorAll('.ficha.verde');
-  
-      activas.forEach(f => {
-        f.style.opacity = 1;
-        f.style.cursor = 'pointer';
-      });
-    }
-  
-    actualizarFichasDisponibles();
+  });
 
-    // Ocultar la tarjeta al hacer clic fuera de una ficha o la propia tarjeta
-    document.addEventListener('click', (event) => {
-      const tarjeta1 = document.getElementById('tarjeta-izquierda');
-      const tarjeta2 = document.getElementById('tarjeta-derecha');
+  nuevaFicha.addEventListener('mouseleave', () => {
+    if (nuevaFicha.style.border === '2px solid yellow') return;
+    ocultarTarjeta(nuevaFicha.dataset.jugador);
+  });
 
-      const esFicha = event.target.classList.contains('ficha');
-      const esTarjeta1 = tarjeta1.contains(event.target);
-      const esTarjeta2 = tarjeta2.contains(event.target);
+  // Eliminar ficha de la casilla anterior
+  if (fichaOrigen && fichaOrigen.hasChildNodes()) {
+    fichaOrigen.removeChild(fichaSeleccionada);
+  }
 
-      if (!esFicha && !esTarjeta1 && !esTarjeta2) {
-        ocultarTarjeta();
-        fichas.forEach(f => f.style.border = 'none');
-      }
-    });
+  // Verificar si llegó al otro extremo del tablero
+  const columnaDestino = parseInt(casilla.dataset.columna);
+  const jugador = parseInt(nuevaFicha.dataset.jugador);
+  if ((jugador === 1 && columnaDestino === 9) || (jugador === 2 && columnaDestino === 0)) {
+    sumarPunto(jugador);
+    return; // No colocar la ficha, se considera retirada
+  }
+
+  casilla.appendChild(nuevaFicha);
+
+  fichaSeleccionada.style.visibility = 'hidden';
+  fichaSeleccionada = null;
+  fichaOrigen = null;
+
+  jugadorActivo = jugadorActivo === 1 ? 2 : 1;
+  actualizarFichasDisponibles();
+}
+
 
     // === NUEVO: Eventos mouseenter/mouseleave/click para fichas ===
     fichas.forEach(ficha => {
@@ -574,4 +556,16 @@ casillas.forEach(casilla => {
         }
       });
     });
+
+    function sumarPunto(jugador) {
+      const marcador = document.getElementById(`puntos-j${jugador}`);
+      let puntosActuales = parseInt(marcador.textContent);
+      puntosActuales++;
+      marcador.textContent = `${puntosActuales} / 6 🏆`;
+    
+      if (puntosActuales >= 6) {
+        alert(`¡Jugador ${jugador} ha ganado la partida!`);
+      }
+    }
+    
   });
