@@ -1,5 +1,5 @@
 {
-  "name": "com.carlos.juegotablero",
+  "name": "instinto-animal",
   "displayName": "Instinto Animal",
   "version": "1.0.0",
   "description": "Un juego de estrategia sobre animales dónde ganará el más habilidoso",
@@ -10,7 +10,7 @@
   "keywords": [
     "ecosystem:cordova"
   ],
-  "author": "Apache Cordova Team",
+  "author": "Carlos Solvas, Oscar Robles",
   "license": "Apache-2.0",
   "devDependencies": {
     "cordova-android": "^14.0.0",
