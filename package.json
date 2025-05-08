@@ -1,8 +1,8 @@
 {
   "name": "com.carlos.juegotablero",
-  "displayName": "JuegoTablero",
+  "displayName": "Instinto Animal",
   "version": "1.0.0",
-  "description": "A sample Apache Cordova application that responds to the deviceready event.",
+  "description": "Un juego de estrategia sobre animales dónde ganará el más habilidoso",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,11 +13,15 @@
   "author": "Apache Cordova Team",
   "license": "Apache-2.0",
   "devDependencies": {
-    "cordova-android": "^14.0.0"
+    "cordova-android": "^14.0.0",
+    "cordova-browser": "^7.0.0",
+    "cordova-ios": "^7.1.1"
   },
   "cordova": {
     "platforms": [
-      "android"
+      "android",
+      "browser",
+      "ios"
     ]
   }
 }
